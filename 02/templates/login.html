@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/login2" method="post" id="loginForm">
+    <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <button type="submit">登录</button>
+
+
+</div>
+
+</form>
+
+</body>
+
+
+<script>
+    $("#loginForm").submit(function(event){
+        event.preventDefault();
+        $.ajax({
+            url:"/login2",
+            type:"POST",
+            data:$("#loginForm").serialize(),
+            success:function(result){
+                console.log(result);
+                if (result.success===0){alert("登录成功")
+                windows.location.href ="/"}
+                else {alert("登录失败")}
+            }
+        })
+        })
+</script>
+
+
+
+
+</html>

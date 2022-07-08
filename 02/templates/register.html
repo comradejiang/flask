@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<body>
+<form action="/register2" method="post" id="registerForm" >
+
+<div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <label for="psw"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Enter Password Again" name="repeat_password" required>
+
+    <button type="submit">注册</button>
+</div>
+</form>
+</body>
+
+<script>
+    $("#registerForm").submit(function(event){
+        event.preventDefault();
+        $.ajax({
+            url:"/register2",
+            type:"POST",
+            data:$("#registerForm").serialize(),
+            success:function(result){
+                console.log(result);
+                if (result.success===0){alert("操作成功")}
+                else {alert("操作失败")}
+            }
+        })
+        })
+</script>
+</html>
