@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{#连接网上插件#}
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<body>
+<form action="/login2" method="post" id="loginForm">
+    <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <button type="submit">登录</button>
+
+
+</div>
+
+</form>
+
+</body>
+
+
+<script>
+    {#//改写submit按钮，便于连接url，记录并验证数据#}
+    $("#loginForm").submit(function(event){
+        event.preventDefault();
+        $.ajax({
+            url:"/login2",
+            type:"POST",
+            data:$("#loginForm").serialize(),
+            success:function(result){
+                console.log(result);
+                if (result.success===0){alert("登录成功")
+                window.location.href ="/"}
+                else {alert("登录失败")}
+            }
+        })
+        })
+</script>
+
+
+
+
+</html>

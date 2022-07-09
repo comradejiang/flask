@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PIONEER首页</title>
+</head>
+{#连接网上插件#}
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<body>
+<h1>PIONEER首页</h1>
+<button class="logout" id="logout">注销</button>
+</body>
+<script>
+    {#//改写submit按钮，便于连接url，记录并验证数据#}
+    document.getElementById("logout").onclick=function (){
+          $.ajax({
+            url:"/logout",
+            success:function(result){
+                console.log(result);
+                if (result.success===0){alert("注销成功")
+                window.location.reload()}
+                else {alert("注销失败")}
+            }
+        })
+    }
+</script>
+</html>
